@@ -1,0 +1,181 @@
+input {
+    keyboard {
+        xkb {
+            layout "de"
+            variant "nodeadkeys"
+        }
+        numlock
+    }
+
+    touchpad {
+        off
+    }
+
+    mouse {
+    }
+
+    trackpoint {
+        off
+    }
+
+    focus-follows-mouse
+}
+
+output "ViewSonic Corporation VX2458-mhd VHT191500830" {
+    mode "1920x1080@144.001"
+    scale 1.0
+    transform "normal"
+}
+
+layout {
+    gaps 16
+    always-center-single-column
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 4
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+
+    border {
+        off
+    }
+
+    shadow {
+    }
+
+    struts {
+        left 32
+        right 32
+    }
+}
+
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "noctalia"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+
+screenshot-path "~/pictures/screenshots/screenshot_from_%Y-%m-%d_%H-%M-%S.png"
+
+animations {
+}
+
+cursor {
+    xcursor-theme "phinger-cursors-dark"
+    xcursor-size 24
+}
+
+window-rule {
+    geometry-corner-radius 16
+    clip-to-geometry true
+}
+
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width  { proportion 1.0; }
+  default-window-height { proportion 1.0; }
+}
+
+window-rule {
+    match app-id="Librewolf" title="^Picture-in-Picture$"
+    open-floating true
+}
+
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^noctalia-"
+    background-effect {
+        blur false
+    }
+}
+
+binds {
+    Mod+Shift+N { show-hotkey-overlay;                                  }
+    Mod+Return  { spawn "alacritty";                                    }
+    Mod+W       { spawn "librewolf";                                    }
+    Mod+Space   { spawn-sh "noctalia msg panel-toggle launcher";        }
+    Mod+S       { spawn-sh "noctalia msg panel-toggle control-center";  }
+    Mod+I       { spawn-sh "noctalia msg settings-toggle";              }
+
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "noctalia msg volume-up";       }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "noctalia msg volume-down";     }
+    XF86AudioMute         allow-when-locked=true { spawn-sh "noctalia msg volume-mute";     }
+
+    XF86AudioPlay         allow-when-locked=true { spawn-sh "noctalia msg media toggle";    }
+    XF86AudioPrev         allow-when-locked=true { spawn-sh "noctalia msg media previous";  }
+    XF86AudioNext         allow-when-locked=true { spawn-sh "noctalia msg media next";      }
+
+    XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia msg brightness-up";   }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
+
+    Mod+Escape repeat=false { toggle-overview; }
+    Mod+C      repeat=false { close-window;    }
+
+    Mod+H       { focus-column-left;    }
+    Mod+J       { focus-window-down;    }
+    Mod+K       { focus-window-up;      }
+    Mod+L       { focus-column-right;   }
+    Mod+Shift+H { move-column-left;     }
+    Mod+Shift+J { move-window-down;     }
+    Mod+Shift+K { move-window-up;       }
+    Mod+Shift+L { move-column-right;    }
+    Mod+Ctrl+J  { focus-workspace-down; }
+    Mod+Ctrl+K  { focus-workspace-up; }
+
+    Mod+WheelScrollDown       cooldown-ms=150 { focus-column-right; }
+    Mod+WheelScrollUp         cooldown-ms=150 { focus-column-left;  }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-right;  }
+    Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-column-left;   }
+
+    Mod+1       { focus-workspace 1;            }
+    Mod+2       { focus-workspace 2;            }
+    Mod+3       { focus-workspace 3;            }
+    Mod+Ctrl+1  { move-window-to-workspace 1;   }
+    Mod+Ctrl+2  { move-window-to-workspace 2;   }
+    Mod+Ctrl+3  { move-window-to-workspace 3;   }
+
+    Mod+Tab     { focus-workspace-previous;     }
+    Mod+R       { switch-preset-column-width;   }
+
+    Mod+F       { maximize-column;              }
+    Mod+Shift+F { fullscreen-window;            }
+    Mod+Ctrl+F  { maximize-window-to-edges;     }
+
+    Mod+Minus   { set-column-width "-10%";      }
+    Mod+Plus    { set-column-width "+10%";      }
+
+    Mod+V       { toggle-window-floating;       }
+
+    Print       { screenshot;                   }
+    Ctrl+Print  { screenshot-screen;            }
+    Alt+Print   { screenshot-window;            }
+
+    Mod+Comma allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Mod+B       { spawn "noctalia" "msg" "session" "lock";  }
+    Mod+Shift+Q { quit;                                     }
+    Mod+Shift+P { power-off-monitors;                       }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+}
