@@ -15,7 +15,7 @@
 
     extraConfig = ''
       set clipboard=unnamedplus
-      set softtabstop = 4;
+      set softtabstop=4
     '';
   };
 }
