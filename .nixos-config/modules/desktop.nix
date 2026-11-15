@@ -5,12 +5,23 @@
 
   services.greetd = {
     enable = true;
+    useTextGreeter = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.tuigreet} --time --remember --asterisks --cmd ${config.programs.niri.package}/bin/niri-session";
+        command = "${lib.getExe pkgs.tuigreet} --time --time-format '%A, %-d. %B %Y - %H:%M:%S' --remember --asterisks --greeting 'Welcome back' --theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red' --background matrix --cmd ${config.programs.niri.package}/bin/niri-session";
         user = "greeter";
       };
     };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   fonts.packages = with pkgs; [
