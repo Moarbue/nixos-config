@@ -14,6 +14,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   # GTX 970 (Maxwell) — must use the legacy 580 driver.
   # Latest proprietary drivers have dropped Maxwell support.
   services.xserver.videoDrivers = [ "nvidia" ];
