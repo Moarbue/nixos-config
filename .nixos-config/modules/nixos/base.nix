@@ -30,6 +30,10 @@
   };
 
   zramSwap.enable = true;
+  boot.tmp.cleanOnBoot = true;
+
+  # Lets prebuilt (non-Nix) binaries run, e.g. Zed's downloaded language servers.
+  programs.nix-ld.enable = true;
 
   # ── Locale / keyboard ──────────────────────────────────────────────
   time.timeZone = "Europe/Rome";
