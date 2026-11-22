@@ -36,6 +36,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "backup"; # don't abort on pre-existing dotfiles
                 extraSpecialArgs = { inherit inputs; };
                 users.moarbue.imports = [
                   ./home/moarbue
@@ -48,5 +49,7 @@
     in
     {
       nixosConfigurations = nixpkgs.lib.genAttrs [ "moarpc" "moarlt" ] mkHost;
+
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
     };
 }
