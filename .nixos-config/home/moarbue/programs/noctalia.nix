@@ -92,6 +92,7 @@
 
       shell = {
         font_family = config.my.font.family;
+        polkit_agent = true;
         time_format = "{:%H:%M}";
         date_format = "%A, %x";
         corner_radius_scale = 1.0;
