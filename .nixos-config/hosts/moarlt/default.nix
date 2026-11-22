@@ -23,8 +23,8 @@
     bypassWorkqueues = true;
   };
 
-  # Offset of /swap/swapfile. Filled in during installation (INSTALL.md, step 8).
-  my.hibernate.resumeOffset = null;
+  # Offset of /swap/swapfile.
+  my.hibernate.resumeOffset = 533760;
 
   # Nothing GPU-specific needed: amdgpu is in the kernel, and Mesa (pulled in
   # by hardware.graphics) already provides OpenGL, Vulkan (RADV) and VA-API.
