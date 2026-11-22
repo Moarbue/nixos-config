@@ -9,6 +9,7 @@
     ./programs/git.nix
     ./programs/librewolf.nix
     ./programs/noctalia.nix
+    ./programs/opencode.nix
     ./programs/shell.nix
     ./programs/vim.nix
   ];
