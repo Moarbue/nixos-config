@@ -11,6 +11,7 @@
     ./programs/noctalia.nix
     ./programs/opencode.nix
     ./programs/shell.nix
+    ./programs/ssh.nix
     ./programs/vim.nix
   ];
 

@@ -61,6 +61,11 @@
     nftables.enable = true;
   };
 
+  # Pin GitHub's SSH host key (from https://api.github.com/meta) so the first
+  # connection doesn't depend on trust-on-first-use.
+  programs.ssh.knownHosts."github.com".publicKey =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+
   # ── Audio / Bluetooth / removable media ────────────────────────────
   services.pipewire = {
     enable = true;
