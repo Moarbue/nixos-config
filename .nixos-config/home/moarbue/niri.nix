@@ -2,7 +2,7 @@
 #   - a generated part (keyboard, pointer devices, outputs, cursor, paths)
 #   - the static niri/base.kdl
 # and validates the result at build time with `niri validate`.
-{ config, lib, pkgs, osConfig, ... }:
+{ config, pkgs, osConfig, ... }:
 
 let
   cfg = config.my.niri;
