@@ -1,16 +1,11 @@
 {
-  description = "NixOS configuration for moarbue's desktop";
+  description = "moarbue's NixOS configurations: moarpc (desktop), moarlt (ThinkPad X13 G3)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";   # master branch for unstable
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
+      url = "github:nix-community/home-manager"; # master, matches nixos-unstable
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -25,27 +20,33 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, ... }@inputs:
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
-    in {
-      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/desktop
-          ({ ... }: {
-              nixpkgs.overlays = [ inputs.nur.overlays.default ];
-          })
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.moarbue = import ./home/moarbue.nix;
-          }
-        ];
-      };
+      # hosts/<name>/default.nix  -> NixOS config
+      # hosts/<name>/home.nix     -> per-host home-manager overrides
+      mkHost =
+        name:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${name}
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+                users.moarbue.imports = [
+                  ./home/moarbue
+                  ./hosts/${name}/home.nix
+                ];
+              };
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations = nixpkgs.lib.genAttrs [ "moarpc" "moarlt" ] mkHost;
     };
 }

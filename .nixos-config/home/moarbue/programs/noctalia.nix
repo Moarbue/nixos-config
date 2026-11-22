@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
 {
   programs.noctalia = {
     enable = true;
+    systemd.enable = true; # replaces spawn-at-startup in niri
 
     settings = {
       theme = {
@@ -42,7 +43,7 @@
         background_opacity = 1.0;
         compositor_blur = true;
         radius = 12;
-        margin_ends = 180;
+        margin_ends = lib.mkDefault 40; # overridden per host
         margin_edge = 10;
         padding = 14;
         widget_spacing = 6;
@@ -79,7 +80,7 @@
         behavior.lock = {
           timeout = 600;
           action = "lock";
-          enabled = false;
+          enabled = lib.mkDefault false; # enabled on the laptop
         };
 
         behavior.screen-off = {
@@ -90,7 +91,7 @@
       };
 
       shell = {
-        font_family = "JetBrainsMono Nerd Font";
+        font_family = config.my.font.family;
         time_format = "{:%H:%M}";
         date_format = "%A, %x";
         corner_radius_scale = 1.0;

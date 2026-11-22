@@ -1,0 +1,85 @@
+# Shared by every machine.
+{ inputs, pkgs, ... }:
+
+{
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ inputs.nur.overlays.default ];
+  };
+
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    optimise.automatic = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+    # Make `nix shell nixpkgs#foo` / <nixpkgs> use the exact nixpkgs of this flake.
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
+    channel.enable = false;
+  };
+
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 10; # keep /boot from filling up
+    };
+    efi.canTouchEfiVariables = true;
+  };
+
+  zramSwap.enable = true;
+
+  # ── Locale / keyboard ──────────────────────────────────────────────
+  time.timeZone = "Europe/Rome";
+
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_TIME = "de_DE.UTF-8";
+      LC_MONETARY = "de_DE.UTF-8";
+    };
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "de_DE.UTF-8/UTF-8"
+      "it_IT.UTF-8/UTF-8"
+    ];
+  };
+
+  console.keyMap = "de-latin1-nodeadkeys";
+  # Single source of truth for the graphical layout: niri reads it via
+  # `osConfig` in home/moarbue/niri.nix.
+  services.xserver.xkb = {
+    layout = "de";
+    variant = "nodeadkeys";
+  };
+
+  # ── Networking ─────────────────────────────────────────────────────
+  networking = {
+    networkmanager.enable = true;
+    nftables.enable = true;
+  };
+
+  # ── Audio / Bluetooth / removable media ────────────────────────────
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+  security.rtkit.enable = true;
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
+  services.udisks2.enable = true; # used by udiskie (home-manager)
+
+  environment.systemPackages = with pkgs; [
+    git curl wget htop btop unzip zip vim
+  ];
+}

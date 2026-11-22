@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   programs.alacritty = {
@@ -11,8 +11,8 @@
         opacity = 0.95;
       };
       font = {
-        normal = { family = "JetBrainsMono Nerd Font"; style = "Regular"; };
-        size = 16;
+        normal = { family = config.my.font.family; style = "Regular"; };
+        size = config.my.font.size;
       };
     };
   };

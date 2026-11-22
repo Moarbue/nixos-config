@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.librewolf = {
@@ -83,7 +83,6 @@
       PasswordManagerEnabled = false;
       AutofillAddressEnabled = false;
       AutofillCreditCardEnabled = false;
-      Homepage = { StartPage = "previous-session"; };
     };
   };
 }

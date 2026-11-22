@@ -1,31 +1,6 @@
-input {
-    keyboard {
-        xkb {
-            layout "de"
-            variant "nodeadkeys"
-        }
-        numlock
-    }
-
-    touchpad {
-        off
-    }
-
-    mouse {
-    }
-
-    trackpoint {
-        off
-    }
-
-    focus-follows-mouse
-}
-
-output "ViewSonic Corporation VX2458-mhd VHT191500830" {
-    mode "1920x1080@144.001"
-    scale 1.0
-    transform "normal"
-}
+// Static part of the niri config. input/output/cursor/screenshot-path are
+// generated in ../niri.nix. noctalia is started by its systemd user service
+// and xwayland-satellite on demand by niri itself.
 
 layout {
     gaps 16
@@ -50,33 +25,17 @@ layout {
         off
     }
 
-    shadow {
-    }
-
     struts {
         left 32
         right 32
     }
 }
 
-spawn-at-startup "xwayland-satellite"
-spawn-at-startup "noctalia"
-
 hotkey-overlay {
     skip-at-startup
 }
 
 prefer-no-csd
-
-screenshot-path "~/pictures/screenshots/screenshot_from_%Y-%m-%d_%H-%M-%S.png"
-
-animations {
-}
-
-cursor {
-    xcursor-theme "phinger-cursors-dark"
-    xcursor-size 24
-}
 
 window-rule {
     geometry-corner-radius 16
@@ -91,7 +50,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Librewolf" title="^Picture-in-Picture$"
+    match app-id="(?i)^librewolf$" title="^Picture-in-Picture$"
     open-floating true
 }
 
