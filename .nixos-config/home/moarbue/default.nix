@@ -13,6 +13,8 @@
     ./programs/shell.nix
     ./programs/ssh.nix
     ./programs/vim.nix
+    ./theme.nix
+    ./xdg.nix
   ];
 
   home = {

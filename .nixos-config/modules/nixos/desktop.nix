@@ -40,6 +40,8 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
+  programs.dconf.enable = true;
+
   security.polkit.enable = true;
 
   # Electron/Chromium apps use native Wayland.
