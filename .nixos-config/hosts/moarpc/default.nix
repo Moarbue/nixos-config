@@ -9,6 +9,7 @@
     ../../modules/nixos/users.nix
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/gaming.nix
+    ../../modules/nixos/snapshots.nix
   ];
 
   networking.hostName = "moarpc";

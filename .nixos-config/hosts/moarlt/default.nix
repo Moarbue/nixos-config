@@ -10,6 +10,7 @@
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/laptop.nix
     ../../modules/nixos/hibernate.nix
+    ../../modules/nixos/snapshots.nix
   ];
 
   networking.hostName = "moarlt";
