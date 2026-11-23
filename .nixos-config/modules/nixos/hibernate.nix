@@ -4,8 +4,8 @@
 # Lid close does suspend-then-hibernate: suspend first, hibernate after a delay
 # so an unattended laptop in a bag doesn't drain the battery overnight.
 #
-# The swapfile is created during installation (see INSTALL.md); its physical
-# offset (my.hibernate.resumeOffset) is needed so the kernel can find it.
+# The swapfile lives in /swap/swapfile; its physical offset
+# (my.hibernate.resumeOffset) is needed so the kernel can find it.
 { config, lib, ... }:
 
 let
@@ -25,7 +25,7 @@ in
     assertions = [
       {
         assertion = cfg.resumeOffset != null;
-        message = "my.hibernate.resumeOffset is not set (see INSTALL.md, step 8).";
+        message = "my.hibernate.resumeOffset is not set; get it with `btrfs inspect-internal map-swapfile -r /swap/swapfile`.";
       }
     ];
 
