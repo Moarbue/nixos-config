@@ -1,6 +1,6 @@
 # Small set of knobs that differ per machine. Hosts set them in
 # hosts/<name>/home.nix; the shared modules read them.
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   options.my = {
@@ -12,8 +12,13 @@
       };
       size = lib.mkOption {
         type = lib.types.number;
-        default = 12;
+        default = 14;
         description = "Terminal font size.";
+      };
+      editorSize = lib.mkOption {
+        type = lib.types.number;
+        default = config.my.font.size + 4;
+        description = "Font size in the editor (Zed). Defaults to the terminal size + 2.";
       };
     };
 

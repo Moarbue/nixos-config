@@ -13,6 +13,7 @@
     ./programs/shell.nix
     ./programs/ssh.nix
     ./programs/vim.nix
+    ./programs/zed.nix
     ./theme.nix
     ./xdg.nix
   ];
@@ -38,7 +39,6 @@
       vesktop
       signal-desktop
       karere
-      zed-editor
     ];
   };
 
