@@ -1,7 +1,7 @@
 # Hibernation with a hybrid swap setup (laptop):
 #   - zram (base.nix, priority 5)   → fast, used for everyday memory pressure
 #   - Btrfs swapfile in @swap       → lower priority, used for the hibernation image
-# Lid close does suspend-then-hibernate: suspend first, hibernate after a delay
+# Lid close on battery does suspend-then-hibernate: suspend first, hibernate after a delay
 # so an unattended laptop in a bag doesn't drain the battery overnight.
 #
 # The swapfile lives in /swap/swapfile; its physical offset
@@ -39,7 +39,13 @@ in
     boot.resumeDevice = "/dev/mapper/cryptroot";
     boot.kernelParams = lib.optional (cfg.resumeOffset != null) "resume_offset=${toString cfg.resumeOffset}";
 
-    services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
+    # Battery: lock (noctalia does that on sleep) + suspend-then-hibernate.
+    # On AC or docked the lid does nothing.
+    services.logind.settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "ignore";
+      HandleLidSwitchDocked = "ignore";
+    };
     systemd.sleep.settings.Sleep.HibernateDelaySec = "1h";
   };
 }

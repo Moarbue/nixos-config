@@ -37,6 +37,11 @@ hotkey-overlay {
 
 prefer-no-csd
 
+switch-events {
+    // Screen stays dark after resume until a key is pressed.
+    lid-open { spawn "niri" "msg" "action" "power-on-monitors"; }
+}
+
 window-rule {
     geometry-corner-radius 16
     clip-to-geometry true
