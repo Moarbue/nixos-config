@@ -15,6 +15,7 @@ let
         touchpad {
             tap
             dwt
+            natural-scroll
         }
       ''
     else
