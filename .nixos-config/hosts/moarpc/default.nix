@@ -17,5 +17,5 @@
   powerManagement.cpuFreqGovernor = "performance";
 
   # Defined in hardware-configuration.nix; this only adds an option.
-  fileSystems."/data".options = [ "noatime" ];
+  fileSystems."/data".options = [ "noatime" "nofail" ];
 }
