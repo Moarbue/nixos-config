@@ -4,6 +4,7 @@
   imports = [
     inputs.noctalia.homeModules.default
     ./options.nix
+    ./mimeapps.nix
     ./niri.nix
     ./programs/alacritty.nix
     ./programs/git.nix
@@ -12,7 +13,9 @@
     ./programs/opencode.nix
     ./programs/shell.nix
     ./programs/ssh.nix
+    ./programs/viewers.nix
     ./programs/vim.nix
+    ./programs/yazi.nix
     ./programs/zed.nix
     ./theme.nix
     ./xdg.nix
@@ -35,7 +38,6 @@
     packages = with pkgs; [
       ungoogled-chromium
       tutanota-desktop
-      mpv
       vesktop
       signal-desktop
       karere

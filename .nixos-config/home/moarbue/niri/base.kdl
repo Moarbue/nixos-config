@@ -75,6 +75,7 @@ binds {
     Mod+Shift+N { show-hotkey-overlay;                                  }
     Mod+Return  { spawn "alacritty";                                    }
     Mod+W       { spawn "librewolf";                                    }
+    Mod+E       { spawn "alacritty" "-e" "yazi";                        }
     Mod+Space   { spawn-sh "noctalia msg panel-toggle launcher";        }
     Mod+S       { spawn-sh "noctalia msg panel-toggle control-center";  }
     Mod+I       { spawn-sh "noctalia msg settings-toggle";              }
