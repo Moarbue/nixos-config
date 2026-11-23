@@ -88,6 +88,6 @@
   services.udisks2.enable = true; # used by udiskie (home-manager)
 
   environment.systemPackages = with pkgs; [
-    git curl wget htop btop unzip zip vim
+    git curl wget htop btop unzip zip vim usbutils pciutils
   ];
 }
