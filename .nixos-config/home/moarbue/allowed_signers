@@ -1,0 +1,3 @@
+# One line per device. Public keys only.
+83272310+Moarbue@users.noreply.github.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDP/vRdAy6xfqoy79CdNpZ/tYsK429BS96ax5RPmBZNI moarbue@moarlt
+# moarpc: add `cat ~/.ssh/id_ed25519.pub` output here
