@@ -13,8 +13,11 @@
 
   systemd.services.thinkpad-battery-thresholds = {
     description = "Set ThinkPad battery charge thresholds";
-    after = [ "multi-user.target" ];
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [
+      "multi-user.target"
+      "post-resume.target"
+    ];
+    after = [ "post-resume.target" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
@@ -31,7 +34,7 @@
 
   services.fwupd.enable = true; # Lenovo ships firmware updates via LVFS
 
-  # Backlight control for the brightness keys and serial device access.
+  # Backlight control for the brightness keys
   users.users.moarbue.extraGroups = [
     "video"
   ];
