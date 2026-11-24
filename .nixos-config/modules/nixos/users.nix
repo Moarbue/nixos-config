@@ -6,6 +6,10 @@
   users.users.moarbue = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "dialout"
+    ];
   };
 }
