@@ -20,7 +20,6 @@
     after = [ "post-resume.target" ];
     serviceConfig = {
       Type = "oneshot";
-      RemainAfterExit = true;
       ExecStart = pkgs.writeShellScript "set-bat-thresholds" ''
         BAT=/sys/class/power_supply/BAT0
         if [ -d "$BAT" ]; then
