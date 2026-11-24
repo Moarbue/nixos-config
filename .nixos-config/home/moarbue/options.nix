@@ -24,6 +24,21 @@
 
     niri = {
       touchpad = lib.mkEnableOption "touchpad and trackpoint input in niri";
+      touchpadSpeed = lib.mkOption {
+        type = lib.types.numbers.between (-1) 1;
+        default = 0.0;
+        description = "libinput acceleration speed of the touchpad (-1 slowest, 1 fastest).";
+      };
+      trackpointSpeed = lib.mkOption {
+        type = lib.types.numbers.between (-1) 1;
+        default = 0.0;
+        description = "libinput acceleration speed of the trackpoint (-1 slowest, 1 fastest).";
+      };
+      touchpadScrollFactor = lib.mkOption {
+        type = lib.types.numbers.positive;
+        default = 1.0;
+        description = "Touchpad scroll speed multiplier (1.0 = default, lower = slower).";
+      };
       outputs = lib.mkOption {
         type = lib.types.lines;
         default = "";

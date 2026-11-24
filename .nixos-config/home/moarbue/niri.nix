@@ -2,7 +2,12 @@
 #   - a generated part (keyboard, pointer devices, outputs, cursor, paths)
 #   - the static niri/base.kdl
 # and validates the result at build time with `niri validate`.
-{ config, pkgs, osConfig, ... }:
+{
+  config,
+  pkgs,
+  osConfig,
+  ...
+}:
 
 let
   cfg = config.my.niri;
@@ -16,6 +21,12 @@ let
             tap
             dwt
             natural-scroll
+            accel-speed ${toString cfg.touchpadSpeed}
+            scroll-factor ${toString cfg.touchpadScrollFactor}
+        }
+
+        trackpoint {
+            accel-speed ${toString cfg.trackpointSpeed}
         }
       ''
     else
@@ -56,11 +67,10 @@ let
 
   raw = pkgs.writeText "niri-config-raw.kdl" (generated + "\n" + builtins.readFile ./niri/base.kdl);
 
-  validated =
-    pkgs.runCommand "niri-config.kdl" { nativeBuildInputs = [ pkgs.niri ]; } ''
-      niri validate -c ${raw}
-      cp ${raw} $out
-    '';
+  validated = pkgs.runCommand "niri-config.kdl" { nativeBuildInputs = [ pkgs.niri ]; } ''
+    niri validate -c ${raw}
+    cp ${raw} $out
+  '';
 in
 {
   xdg.configFile."niri/config.kdl".source = validated;
