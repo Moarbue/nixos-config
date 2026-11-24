@@ -39,6 +39,7 @@
       ungoogled-chromium
       tutanota-desktop
       vesktop
+      pdfarranger
       signal-desktop
       karere
     ];
