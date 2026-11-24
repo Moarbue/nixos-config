@@ -6,10 +6,10 @@ NixOS flake for my desktop and laptop: [niri](https://github.com/niri-wm/niri) a
 
 ## Hosts
 
-| Host     | Machine                                 | Notes                                         |
-| -------- | --------------------------------------- | --------------------------------------------- |
-| `moarpc` | Desktop PC (AMD CPU, GTX 970, Btrfs)    | legacy NVIDIA 580 driver, Steam, gaming       |
-| `moarlt` | ThinkPad X13 Gen 3 (AMD CPU, Radeon)    | LUKS, hibernation, power-profiles-daemon, fwupd |
+| Host     | Machine                              | Notes                                           |
+| -------- | ------------------------------------ | ----------------------------------------------- |
+| `moarpc` | Desktop PC (AMD CPU, GTX 970, Btrfs) | legacy NVIDIA 580 driver, Steam, gaming         |
+| `moarlt` | ThinkPad X13 Gen 3 (AMD CPU, Radeon) | LUKS, hibernation, power-profiles-daemon, fwupd |
 
 ## Layout
 
@@ -19,7 +19,7 @@ modules/nixos/               # shared NixOS modules
   base.nix                   #   nix settings, locale, networking, audio, bluetooth
   btrfs.nix                  #   subvolume mount options, scrub, trim
   users.nix                  #   user account and shell
-  desktop.nix                #   niri, greetd/tuigreet, fonts, portals
+  desktop.nix                #   niri, greetd/regreet, fonts, portals
   gaming.nix                 #   Steam, gamemode (desktop only)
   laptop.nix                 #   power management, fwupd (laptop only)
   hibernate.nix              #   swapfile + suspend-then-hibernate (laptop only)
