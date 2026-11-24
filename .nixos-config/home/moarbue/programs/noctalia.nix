@@ -16,7 +16,13 @@
       wallpaper = {
         enabled = true;
         fill_mode = "crop";
-        transition = [ "fade" "wipe" "disc" "stripes" "zoom" ];
+        transition = [
+          "fade"
+          "wipe"
+          "disc"
+          "stripes"
+          "zoom"
+        ];
         transition_duration = 1500;
         transition_on_startup = false;
         sync_transitions = true;
@@ -54,12 +60,24 @@
         reserve_space = true;
         capsule = false;
 
-        start = [ "launcher" "wallpaper" "workspaces" ];
+        start = [
+          "launcher"
+          "wallpaper"
+          "workspaces"
+        ];
         center = [ "clock" ];
         end = [
-          "media" "tray" "notifications" "clipboard"
-          "network" "bluetooth" "volume" "brightness"
-          "battery" "control-center" "session"
+          "media"
+          "tray"
+          "notifications"
+          "clipboard"
+          "network"
+          "bluetooth"
+          "volume"
+          "brightness"
+          "battery"
+          "control-center"
+          "session"
         ];
       };
 
@@ -99,6 +117,7 @@
         settings_show_advanced = true;
         clipboard_enabled = true;
         clipboard_history_max_entries = 100;
+        launch_apps_as_systemd_services = true; # needed for bwrap/FHS apps (Tuta, Steam)
 
         panel = {
           transparency_mode = "solid";
