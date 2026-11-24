@@ -11,10 +11,30 @@
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true; # battery info for the shell
 
+  systemd.services.thinkpad-battery-thresholds = {
+    description = "Set ThinkPad battery charge thresholds";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = pkgs.writeShellScript "set-bat-thresholds" ''
+        BAT=/sys/class/power_supply/BAT0
+        if [ -d "$BAT" ]; then
+          echo 0 > "$BAT/charge_control_start_threshold"
+          echo 80 > "$BAT/charge_control_end_threshold"
+          echo 75 > "$BAT/charge_control_start_threshold"
+        fi
+      '';
+    };
+  };
+
   services.fwupd.enable = true; # Lenovo ships firmware updates via LVFS
 
-  # Backlight control for the brightness keys.
-  users.users.moarbue.extraGroups = [ "video" ];
+  # Backlight control for the brightness keys and serial device access.
+  users.users.moarbue.extraGroups = [
+    "video"
+  ];
 
   # Fingerprint reader: Goodix 27c6:6594 (MoC), supported by upstream libfprint.
   # This turns on fingerprint auth for every PAM service (sudo, polkit, lock...).
