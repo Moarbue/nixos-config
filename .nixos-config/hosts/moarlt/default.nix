@@ -16,7 +16,7 @@
   networking.hostName = "moarlt";
   system.stateVersion = "26.11";
 
-  # LUKS container created during installation (see INSTALL.md). The device
+  # LUKS container created during installation. The device
   # itself comes from hardware-configuration.nix; this only adds tuning. The
   # name must match the mapper name used at install time ("cryptroot").
   boot.initrd.luks.devices."cryptroot" = {
