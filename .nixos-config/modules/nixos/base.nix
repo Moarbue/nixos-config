@@ -8,7 +8,10 @@
   };
 
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     optimise.automatic = true;
     gc = {
       automatic = true;
@@ -81,13 +84,22 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
   };
   services.blueman.enable = true;
 
   services.udisks2.enable = true; # used by udiskie (home-manager)
 
   environment.systemPackages = with pkgs; [
-    git curl wget htop btop unzip zip vim usbutils pciutils
+    git
+    curl
+    wget
+    htop
+    btop
+    unzip
+    zip
+    vim
+    usbutils
+    pciutils
   ];
 }
