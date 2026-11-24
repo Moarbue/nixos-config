@@ -7,13 +7,14 @@ in
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
-    desktop     = "${home}/desktop";
-    documents   = "${home}/documents";
-    download    = "${home}/downloads";
-    music       = "${home}/music";
-    pictures    = "${home}/pictures";
-    videos      = "${home}/videos";
-    templates   = "${home}/templates";
+    desktop = "${home}/desktop";
+    documents = "${home}/documents";
+    download = "${home}/downloads";
+    music = "${home}/music";
+    pictures = "${home}/pictures";
+    projects = "${home}/projects";
+    videos = "${home}/videos";
+    templates = "${home}/templates";
     publicShare = "${home}/public";
   };
 
