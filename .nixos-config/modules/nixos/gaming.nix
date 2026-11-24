@@ -1,13 +1,17 @@
-# Steam & friends. Vulkan/GL setup comes from hardware.graphics (desktop.nix)
-# and the GPU driver module of the host — nothing vendor-specific here.
 { pkgs, ... }:
 
 {
-  programs.steam.enable = true; # also enables 32-bit graphics
-  programs.gamemode.enable = true;
+  programs.steam = {
+    enable = true;
+    # Proton-GE is picked per game in Steam (Properties → Compatibility),
+    # updated with your flake instead of through protonup-qt.
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    # remotePlay.openFirewall = true;
+    # localNetworkGameTransfers.openFirewall = true;
+  };
 
-  environment.systemPackages = with pkgs; [
-    mangohud
-    protonup-qt
-  ];
+  programs.gamemode.enable = true;
+  programs.gamescope.enable = true; # lets you run `gamescope -f -W 1920 -H 1080 -- %command%`
+
+  environment.systemPackages = [ pkgs.mangohud ];
 }

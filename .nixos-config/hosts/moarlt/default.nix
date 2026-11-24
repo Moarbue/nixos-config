@@ -9,6 +9,7 @@
     ../../modules/nixos/users.nix
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/laptop.nix
+    ../../modules/nixos/gaming.nix
     ../../modules/nixos/hibernate.nix
     ../../modules/nixos/snapshots.nix
   ];
@@ -26,6 +27,8 @@
 
   # Offset of /swap/swapfile.
   my.hibernate.resumeOffset = 533760;
+
+  systemd.tmpfiles.rules = [ "v /home/moarbue/games 0755 moarbue users -" ];
 
   # Nothing GPU-specific needed: amdgpu is in the kernel, and Mesa (pulled in
   # by hardware.graphics) already provides OpenGL, Vulkan (RADV) and VA-API.

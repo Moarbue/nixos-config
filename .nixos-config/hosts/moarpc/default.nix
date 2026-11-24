@@ -17,6 +17,14 @@
 
   powerManagement.cpuFreqGovernor = "performance";
 
+  systemd.tmpfiles.rules = [
+    "d /data/steam 0755 moarbue users -"
+    "v /home/moarbue/games 0755 moarbue users -"
+  ];
+
   # Defined in hardware-configuration.nix; this only adds an option.
-  fileSystems."/data".options = [ "noatime" "nofail" ];
+  fileSystems."/data".options = [
+    "noatime"
+    "nofail"
+  ];
 }
