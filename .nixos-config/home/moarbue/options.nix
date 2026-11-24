@@ -18,7 +18,7 @@
       editorSize = lib.mkOption {
         type = lib.types.number;
         default = config.my.font.size + 4;
-        description = "Font size in the editor (Zed). Defaults to the terminal size + 2.";
+        description = "Font size in the editor (Zed). Defaults to the terminal size + 4.";
       };
     };
 

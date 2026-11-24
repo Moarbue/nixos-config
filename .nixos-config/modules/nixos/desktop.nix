@@ -1,4 +1,4 @@
-# Wayland desktop: niri + greetd/tuigreet. Shared by desktop and laptop.
+# Wayland desktop: niri + greetd/regreet. Shared by desktop and laptop.
 {
   config,
   lib,
