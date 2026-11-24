@@ -87,6 +87,8 @@
 
   programs.dconf.enable = true;
 
+  services.gnome.gnome-keyring.enable = true;
+
   security.polkit.enable = true;
 
   # Electron/Chromium apps use native Wayland.
