@@ -7,6 +7,7 @@
     ./mimeapps.nix
     ./niri.nix
     ./programs/alacritty.nix
+    ./programs/backup.nix
     ./programs/git.nix
     ./programs/librewolf.nix
     ./programs/noctalia.nix
