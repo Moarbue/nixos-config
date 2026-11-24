@@ -39,9 +39,14 @@
       ungoogled-chromium
       tutanota-desktop
       vesktop
-      pdfarranger
       signal-desktop
       karere
+      typst
+      typstyle
+      kdePackages.ghostwriter
+      kicad
+      tio
+      pdfarranger
     ];
   };
 

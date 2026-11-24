@@ -64,9 +64,9 @@ in
         "audio/x-wav"
         "audio/mp4"
       ]
+      // assign "org.kde.ghostwriter.desktop" [ "text/markdown" ]
       // assign "vim-alacritty.desktop" [
         "text/plain"
-        "text/markdown"
         "application/json"
         "application/x-shellscript"
         "text/x-csrc"

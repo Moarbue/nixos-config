@@ -14,6 +14,7 @@
       "nix"
       "toml"
       "kanagawa-themes"
+      "typst"
     ];
 
     # Language servers / formatters Zed finds on PATH.
@@ -21,6 +22,7 @@
       nixd
       nixfmt
       clang-tools
+      tinymist
     ];
 
     userSettings = {
@@ -48,14 +50,20 @@
         metrics = false;
       };
 
-      lsp.clangd.binary = {
-        path = lib.getExe' pkgs.clang-tools "clangd";
-        arguments = [
-          "--background-index"
-          "--clang-tidy"
-          # Lets clangd ask the Nix-wrapped compiler for its include paths.
-          "--query-driver=/nix/store/*/bin/*"
-        ];
+      lsp = {
+        clangd.binary = {
+          path = lib.getExe' pkgs.clang-tools "clangd";
+          arguments = [
+            "--background-index"
+            "--clang-tidy"
+            # Lets clangd ask the Nix-wrapped compiler for its include paths.
+            "--query-driver=/nix/store/*/bin/*"
+          ];
+        };
+        tinymist.settings = {
+          exportPdf = "onSave";
+          formatterMode = "typstyle";
+        };
       };
 
       languages.Nix = {

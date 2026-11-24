@@ -6,10 +6,31 @@
     enableZshIntegration = true;
     shellWrapperName = "y"; # `y` = yazi that cd's the shell to where you quit
 
-    settings.mgr = {
-      sort_by = "natural";
-      sort_dir_first = true;
-      show_hidden = false; # toggle with `.`
+    settings = {
+      mgr = {
+        sort_by = "natural";
+        sort_dir_first = true;
+        show_hidden = false; # toggle with `.`
+      };
+
+      open.prepend_rules = [
+        {
+          mime = "text/markdown";
+          use = [
+            "open"
+            "edit"
+            "reveal"
+          ];
+        }
+        {
+          url = "*.{md,markdown}";
+          use = [
+            "open"
+            "edit"
+            "reveal"
+          ];
+        }
+      ];
     };
   };
 
