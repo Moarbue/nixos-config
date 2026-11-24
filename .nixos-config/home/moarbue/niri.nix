@@ -51,8 +51,6 @@ let
         }
 
         ${pointerDevices}
-
-        focus-follows-mouse
     }
 
     ${cfg.outputs}

@@ -5,9 +5,9 @@
   my.font.size = 12;
 
   my.niri.touchpad = true;
-  my.niri.touchpadSpeed = -0.1;
+  my.niri.touchpadSpeed = 0.0;
   my.niri.trackpointSpeed = -0.5;
-  my.niri.touchpadScrollFactor = 0.4;
+  my.niri.touchpadScrollFactor = 0.5;
   # 1920x1200 on 13.3" — adjust the scale to taste. Run `niri msg outputs`
   # to confirm the connector name.
   my.niri.outputs = ''
