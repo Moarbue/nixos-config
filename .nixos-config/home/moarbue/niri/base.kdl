@@ -59,6 +59,13 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    match app-id="^captive-browser$"
+    open-floating true
+    default-column-width  { proportion 0.8; }
+    default-window-height { proportion 0.8; }
+}
+
 layer-rule {
     match namespace="^noctalia-backdrop"
     place-within-backdrop true
@@ -78,8 +85,9 @@ binds {
     Mod+E       { spawn "alacritty" "-e" "yazi";                        }
     Mod+Space   { spawn-sh "noctalia msg panel-toggle launcher";        }
     Mod+S       { spawn-sh "noctalia msg panel-toggle control-center";  }
-    Mod+Q       { spawn-sh "noctalia msg panel-toggle session";  }
+    Mod+Q       { spawn-sh "noctalia msg panel-toggle session";         }
     Mod+I       { spawn-sh "noctalia msg settings-toggle";              }
+    Mod+Shift+C { spawn "captive-browser";                              }
 
     XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "noctalia msg volume-up";       }
     XF86AudioLowerVolume  allow-when-locked=true { spawn-sh "noctalia msg volume-down";     }
