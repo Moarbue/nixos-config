@@ -1,0 +1,3 @@
+# Generated compilation database and clangd index
+compile_commands.json
+.cache/

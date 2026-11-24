@@ -51,5 +51,10 @@
       nixosConfigurations = nixpkgs.lib.genAttrs [ "moarpc" "moarlt" ] mkHost;
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+
+      templates.c-cpp = {
+        path = ./templates/c-cpp;
+        description = "C/C++ development environment with GCC/Clang, Make, GDB, and clangd";
+      };
     };
 }

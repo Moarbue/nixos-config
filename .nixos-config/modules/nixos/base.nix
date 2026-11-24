@@ -18,8 +18,11 @@
       dates = "weekly";
       options = "--delete-older-than 14d";
     };
-    # Make `nix shell nixpkgs#foo` / <nixpkgs> use the exact nixpkgs of this flake.
-    registry.nixpkgs.flake = inputs.nixpkgs;
+    # Make `nix shell nixpkgs#foo` and `nix flake init -t self#<tpl>` resolve to this flake.
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      self.flake = inputs.self;
+    };
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
     channel.enable = false;
   };
