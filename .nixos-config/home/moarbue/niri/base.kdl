@@ -78,6 +78,7 @@ binds {
     Mod+E       { spawn "alacritty" "-e" "yazi";                        }
     Mod+Space   { spawn-sh "noctalia msg panel-toggle launcher";        }
     Mod+S       { spawn-sh "noctalia msg panel-toggle control-center";  }
+    Mod+Q       { spawn-sh "noctalia msg panel-toggle session";  }
     Mod+I       { spawn-sh "noctalia msg settings-toggle";              }
 
     XF86AudioRaiseVolume  allow-when-locked=true { spawn-sh "noctalia msg volume-up";       }
