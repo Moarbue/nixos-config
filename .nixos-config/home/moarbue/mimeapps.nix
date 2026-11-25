@@ -31,7 +31,10 @@ in
         "Utility"
         "FileManager"
       ];
-      mimeType = [ "inode/directory" ];
+      mimeType = [ 
+        "inode/directory"
+        "inode/mount-point"
+      ];
     };
   };
 
