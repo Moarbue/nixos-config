@@ -26,7 +26,7 @@ in
     yazi-alacritty = {
       name = "Yazi";
       genericName = "File Manager";
-      exec = "alacritty -e yazi %u";
+      exec = "alacritty -e yazi %F";
       categories = [
         "Utility"
         "FileManager"
